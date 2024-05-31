@@ -5,7 +5,7 @@ function App() {
   const [name, setName] = useState("")
   const [greet, setGreet] = useState(false)
 
-  const handleChange = (e) => { setName(e.target.value) }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => { setName(e.target.value) }
 
   const handleGreet = () => { setGreet(true) }
 
