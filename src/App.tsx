@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      {greet ? <h1>Hi, {name}!</h1> : <h1>Hi, who's there?</h1>}
+      {greet ? <h1>Hi, {name}!</h1> : <h1>Hello, who's there?</h1>}
       <div className="card">
         <input type="text" name="person" id="" value={name} onChange={handleChange} />
       </div>
