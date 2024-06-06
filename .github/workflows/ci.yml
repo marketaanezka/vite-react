@@ -18,3 +18,22 @@ jobs:
 
       - name: Run tests
         run: yarn test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy
+        run: curl -X POST -d '{}' https://api.netlify.com/build_hooks/${{ secrets.NETLIFY_WEBHOOK }}
+     
+    
