@@ -6,19 +6,24 @@ export default function Login() {
   const navigate = useNavigate();
   const [isLoggedin, setIsLoggedin] = useState(false);
 
+  const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "";
+  const redirectUri = `${window.location.origin}/auth/callback`;
+
   const handleClick = () => {
-    const callbackUrl = `${window.location.origin}`;
-    const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-    const targetUrl = `https://accounts.google.com/o/oauth2/auth?redirect_uri=
-    ${encodeURIComponent(callbackUrl)}
-    &response_type=token&client_id=${googleClientId}&scope=openid%20email%20profile`;
-    window.location.href = targetUrl;
+    const targetUrl = new URL('https://accounts.google.com/o/oauth2/auth');
+    targetUrl.searchParams.set('response_type', 'code');
+    targetUrl.searchParams.set('client_id', googleClientId);
+    targetUrl.searchParams.set('redirect_uri', redirectUri);
+    targetUrl.searchParams.set('scope', 'openid profile email');
+
+    window.location.href = targetUrl.toString();
   };
 
   useEffect(() => {
     const accessTokenRegex = /access_token=([^&]+)/;
+    console.log(accessTokenRegex);
     const isMatch = window.location.href.match(accessTokenRegex);
-
+    console.log(window.location.href);
     if (isMatch) {
       const accessToken = isMatch[1];
       Cookies.set("access_token", accessToken);
@@ -28,7 +33,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isLoggedin) {
-      navigate("/secure");
+      navigate("/authorized");
     }
   }, [isLoggedin, navigate]);
 

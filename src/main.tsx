@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
+import './styles/index.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Login from './pages/login.tsx';
+import Authorized from './pages/authorized.tsx';
+import AuthCallback from './pages/authcallback.tsx';
 
 
 export const router = createBrowserRouter([
@@ -17,6 +19,14 @@ export const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "authorized",
+    element: <Authorized />,
+  },
+  {
+    path: "auth/callback",
+    element: <AuthCallback />,
   },
 ])
 
