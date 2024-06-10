@@ -10,21 +10,28 @@ export default function AuthCallback() {
     const code = new URLSearchParams(window.location.search).get("code");
     const state = new URLSearchParams(window.location.search).get("state");
 
-    // Replace with your actual Google Cloud Platform Client ID and Client Secret (**important to keep confidential**)
-    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-    const clientSecret = process.env.REACT_APP_GOOGLE_CLIENT_SECRET;
+    console.log(code);
+    console.log(state);
 
-    if (!code || !state) {
+    // Replace with your actual Google Cloud Platform Client ID and Client Secret (**important to keep confidential**)
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "";
+    const clientSecret = process.env.REACT_APP_GOOGLE_CLIENT_SECRET || "";
+
+    console.log(clientSecret);
+
+    if (!code) {
       setError("Missing authorization code or state");
       return;
     }
+
+    const redirectUri = `${window.location.origin}/auth/callback`;
 
     const tokenEndpoint = new URL('https://oauth2.googleapis.com/token');
     const body = new URLSearchParams();
     body.set('grant_type', 'authorization_code');
     body.set('client_id', clientId);
     body.set('client_secret', clientSecret);
-    body.set('redirect_uri', redirectUri); // Replace with your actual redirect URI
+    body.set('redirect_uri', redirectUri); 
     body.set('code', code);
 
     fetch(tokenEndpoint.toString(), {
@@ -50,7 +57,7 @@ export default function AuthCallback() {
         }
 
         // Trigger navigation to Login component (with updated state)
-        navigate("/login", { state: { isLoggedIn: true } });
+        navigate("/authorized", { state: { isLoggedIn: true } });
       })
       .catch(error => {
         console.error("Error fetching tokens:", error);
