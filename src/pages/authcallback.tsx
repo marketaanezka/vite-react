@@ -10,14 +10,9 @@ export default function AuthCallback() {
     const code = new URLSearchParams(window.location.search).get("code");
     const state = new URLSearchParams(window.location.search).get("state");
 
-    console.log(code);
-    console.log(state);
-
     // Replace with your actual Google Cloud Platform Client ID and Client Secret (**important to keep confidential**)
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "";
     const clientSecret = process.env.REACT_APP_GOOGLE_CLIENT_SECRET || "";
-
-    console.log(clientSecret);
 
     if (!code) {
       setError("Missing authorization code or state");

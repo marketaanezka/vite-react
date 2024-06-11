@@ -21,9 +21,7 @@ export default function Login() {
 
   useEffect(() => {
     const accessTokenRegex = /access_token=([^&]+)/;
-    console.log(accessTokenRegex);
     const isMatch = window.location.href.match(accessTokenRegex);
-    console.log(window.location.href);
     if (isMatch) {
       const accessToken = isMatch[1];
       Cookies.set("access_token", accessToken);
