@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import Login from './pages/login.tsx';
 import Authorized from './pages/protectedPage.tsx';
-import AuthCallback from './pages/authcallback.tsx';
 import ProtectedRoute from './pages/protectedRoute.tsx';
 import ProtectedPage from './pages/protectedPage.tsx';
 
