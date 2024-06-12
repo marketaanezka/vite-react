@@ -8,9 +8,6 @@ export default function AuthCallback() {
 
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
-    const state = new URLSearchParams(window.location.search).get("state");
-
-    // Replace with your actual Google Cloud Platform Client ID and Client Secret (**important to keep confidential**)
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || "";
     const clientSecret = process.env.REACT_APP_GOOGLE_CLIENT_SECRET || "";
 
