@@ -49,7 +49,7 @@ export default function AuthCallback() {
         }
 
         // Trigger navigation to Login component (with updated state)
-        navigate("/authorized", { state: { isLoggedIn: true } });
+        navigate("/welcome", { state: { isLoggedIn: true } });
       })
       .catch(error => {
         console.error("Error fetching tokens:", error);

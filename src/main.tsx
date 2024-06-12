@@ -7,8 +7,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Login from './pages/login.tsx';
-import Authorized from './pages/protectedPage.tsx';
-import ProtectedRoute from './pages/protectedRoute.tsx';
+import AuthCallback from './pages/authcallback.tsx';
+import ProtectedRoute from './components/protectedRoute.tsx';
 import ProtectedPage from './pages/protectedPage.tsx';
 
 
@@ -22,8 +22,8 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "authorized",
-    element: <Authorized />,
+    path: "auth/callback",
+    element: <AuthCallback />,
   },
   {
     path: "welcome",

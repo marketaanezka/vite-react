@@ -31,7 +31,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isLoggedin) {
-      navigate("/authorized");
+      navigate("/welcome");
     }
   }, [isLoggedin, navigate]);
 
