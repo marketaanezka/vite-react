@@ -40,15 +40,12 @@ export default function AuthCallback() {
           return;
         }
 
-        // Store access token securely (e.g., cookies)
         Cookies.set("access_token", data.access_token);
 
-        // (Optional) Store refresh token (if available)
         if (data.refresh_token) {
           Cookies.set("refresh_token", data.refresh_token);
         }
 
-        // Trigger navigation to Login component (with updated state)
         navigate("/welcome", { state: { isLoggedIn: true } });
       })
       .catch(error => {
@@ -57,7 +54,6 @@ export default function AuthCallback() {
       });
   }, []);
 
-  // Display error message if any
   if (error) {
     return (
       <div>
@@ -67,7 +63,6 @@ export default function AuthCallback() {
     );
   }
 
-  // Display a loading message while processing tokens (optional)
   return (
     <div>
       <h1>Processing Login...</h1>
