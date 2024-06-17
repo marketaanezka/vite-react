@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { reportWebVitals } from '../reportWebVitals';
 
 const BadPerformanceComponent: React.FC = () => {
   const [data, setData] = useState<string[]>([]);
@@ -6,6 +7,7 @@ const BadPerformanceComponent: React.FC = () => {
   useEffect(() => {
     // Simulate fetching data from an API
     fetchData();
+    reportWebVitals(console.log, "BadPerformanceComponent")
   }, []);
 
   const fetchData = () => {
