@@ -10,7 +10,8 @@ import Login from './pages/login.tsx';
 import AuthCallback from './pages/authcallback.tsx';
 import ProtectedRoute from './components/protectedRoute.tsx';
 import ProtectedPage from './pages/protectedPage.tsx';
-
+import BadPerformanceComponent from './components/BadPerformanceComponent.tsx';
+import { reportWebVitals } from './reportWebVitals.ts';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
   {
     path: "auth/callback",
     element: <AuthCallback />,
+  },
+  {
+    path: "bad-performance",
+    element: <BadPerformanceComponent />,
   },
   {
     path: "welcome",
@@ -40,3 +45,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 )
+
+reportWebVitals(console.log);
